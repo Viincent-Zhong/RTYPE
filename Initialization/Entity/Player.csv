@@ -1,0 +1,5 @@
+PositionX,PositionY,Texture,IsDrawable,RectangleX,RectangleY,RectangleWidth,RectangleHeigth,FrameSpeedX,FrameSpeedY,FrameMax,Hp,NormalShoot,StrongShoot,ShootTimer,LeftAnimationX,LeftAnimationY,RightAnimationX,RightAnimationY,UpAnimationX,UpAnimationY,DownAnimationX,DownAnimationY
+100,100,Assets/Images/r-typesheet42.gif,1,68,0,65,37,68,0,0,10,normal,strong,68,0,68,0,272,0,0,0
+100,300,Assets/Images/r-typesheet42.gif,1,68,30,65,37,68,0,0,10,normal,strong,68,0,68,0,272,0,0,0
+100,500,Assets/Images/r-typesheet42.gif,1,68,70,65,37,68,0,0,10,normal,strong,68,0,68,0,272,0,0,0
+100,700,Assets/Images/r-typesheet42.gif,1,68,105,65,37,68,0,0,10,normal,strong,68,0,68,0,272,0,0,0

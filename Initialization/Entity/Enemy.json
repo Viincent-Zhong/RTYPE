@@ -1,0 +1,85 @@
+{
+    "basicEnemy": {
+        "Offset" : [1980, 800],
+        "Texture" : "Assets/Images/r-typesheet3.gif",
+        "Rectangle": [0, 0, 17, 18],
+        "Framespeed" : [17, 0],
+        "Framemax" : 204,
+        "Damage" : 2,
+        "Hp" : 2,
+        "Direction" : [-2, 0],
+        "Layer": 2
+    },
+
+    "specialEnemy": {
+        "Offset" : [1980, 855],
+        "Texture" : "Assets/Images/r-typesheet33.gif",
+        "Rectangle": [0, 0, 260, 143],
+        "Framespeed" : [260, 0],
+        "Framemax" : 260,
+        "Damage" : 2,
+        "Hp" : 20,
+        "Direction" : [-2, 0],
+        "Layer": 2
+    },
+
+    "specialEnemyUpsideDown": {
+        "Offset" : [1980, 0],
+        "Texture" : "Assets/Images/r-typesheet32.gif",
+        "Rectangle": [0, 0, 260, 143],
+        "Framespeed" : [260, 0],
+        "Framemax" : 260,
+        "Damage" : 2,
+        "Hp" : 20,
+        "Direction" : [-2, 0],
+        "Layer": 2
+    },
+    
+    "advanceEnemy": {
+        "Offset" : [1980, 600],
+        "Texture" : "Assets/Images/r-typesheet39.gif",
+        "Rectangle": [30, 0, 70, 70],
+        "Framespeed" : [17, 0],
+        "Framemax" : 1,
+        "Damage" : 2,
+        "Hp" : 30,
+        "Direction" : [-4, 0],
+        "Layer": 2
+    },
+
+    "fastEnemy": {
+        "Offset" : [1980, 600],
+        "Texture" : "Assets/Images/r-typesheet30a.gif",
+        "Rectangle": [0, 0, 34, 30],
+        "Framespeed" : [34, 0],
+        "Framemax" : 200,
+        "Damage" : 2,
+        "Hp" : 6,
+        "Direction" : [-12, 0],
+        "Layer": 2
+    },
+
+    "robotEnemy": {
+        "Offset" : [1980, 600],
+        "Texture" : "Assets/Images/r-typesheet40.gif",
+        "Rectangle": [0, 0, 66, 60],
+        "Framespeed" : [66, 0],
+        "Framemax" : 198,
+        "Damage" : 2,
+        "Hp" : 20,
+        "Direction" : [-6, 0],
+        "Layer": 2
+    },
+
+    "hazeEnemy": {
+        "Offset" : [1980, 600],
+        "Texture" : "Assets/Images/r-typesheet39.gif",
+        "Rectangle": [0, 70, 32, 32],
+        "Framespeed" : [34, 0],
+        "Framemax" : 136,
+        "Damage" : 4,
+        "Hp" : 6,
+        "Direction" : [-6, 0],
+        "Layer": 2
+    }
+}

@@ -1,0 +1,8 @@
+effectName,file,volume
+button,Assets/Sounds/button.wav,1.0
+fire_one,Assets/Sounds/laser_gun.wav,1.0
+fire_two,Assets/Sounds/big_laser_gun.wav,1.0
+hit,Assets/Sounds/explosion.wav,1.0
+death_player,Assets/Sounds/death.wav,1.0
+death_enemy,Assets/Sounds/explosion.wav,1.0
+bonus,Assets/Sounds/explosion.wav,1.0

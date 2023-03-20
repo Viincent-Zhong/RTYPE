@@ -1,0 +1,3 @@
+PositionX,PositionY,Texture,RectangleX,RectangleY,RectangleWidth,RectangleHeigth,IsDrawable,isSlidable,Layer
+0,0,Assets/Images/r-type_BG.png,0,0,1920,1080,1,1,0
+1920,0,Assets/Images/r-type_BG.png,0,0,1920,1080,1,1,0

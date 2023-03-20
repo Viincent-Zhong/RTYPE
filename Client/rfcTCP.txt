@@ -1,0 +1,117 @@
+RFC for TCP in R-TYPE
+
+(Menu and game data)
+
+Epitech Paris                           Pierre-Alexandre Delgado-Arevalo
+October 2022                                               Vincent Zhong
+Category: Standards Track                                    Sandro Sgro
+                                                         Titouan Lefevre
+
+                          R-Type TCP Protocol
+
+Table of Contents
+
+   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   2.  Format Header  . . . . . . . . . . . . . . . . . . . . . . . . 1
+   3.  Format Body  . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   4.  menu   . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+      4a. Menu data transmission  . . . . . . . . . . . . . . . . . . 2
+      4b. Menu player Events  . . . . . . . . . . . . . . . . . . . . 2
+
+
+
+1. Introduction
+
+   This TCP Protocol is one of the 2 Protocols done for the R-Type
+   project (third year Epitech's project). It specify the events of
+   the client-server communications inside the game menu.
+
+   When the player connect to the game, he is connected to the TCP server for
+   create his account,
+   create a game,
+   get all available games and
+   join a game.
+
+   All the client-server communications in the menu are done by using
+   this TCP Protocol and when joing a Menu, the client is redircet to
+   the UDP server.
+
+2. Format Header
+
+   Header is compose of :
+      SOURCE_PORT : (transmitter)
+      DESTINATION_PORT : (receiver)
+      HEADER_AND_BODY_SIZE : (number)
+
+3. Format Body
+
+   Body is compose of :
+      STATUS_CPDE : (enum)
+      Data : (class)
+
+4. Menu
+
+   When a client enter the menu, he receives informations about the games available.
+   The server can host an undifined number of client.
+
+
+Delgado                      Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+   4a. Menu data transmission
+
+      The server send no informations when connecting to it :
+
+   4b. Menu Client Events
+
+      The Client can execute few events in the Menu :
+
+         CREATE_GAME,
+         JOIN_GAME,
+         GET_GAMES,
+         CREATE_CLIENT
+
+      The server repsons:
+
+         DATA_GAME,
+         BAD_PARAMETERS,
+         CLIENT_NOT_CREATED,
+         CAN_JOIN_GAME,
+         LIST_GAMES,
+         PLAYER_CREATED,
+         NO_PARAMETERS,
+         BAD_NAME
+
+      The CREATE_GAME event :
+
+         The Client can create it own game,
+         see Network/NetworkUtils/TCPData/DataStructur.hpp to see the data you need.
+         For to be able to create a game, the Client need to be create.
+         Response:   DATA_GAME: server send data about the UDP server for join the game
+                     BAD_PARAMETERS: bad parameters
+                     NO_PARAMETERS: missing parameters
+                     CLIENT_NOT_CREATED: Client not created
+
+      The JOIN_GAME event :
+
+         The Client can join a game,
+         The Client need to send the id of the choosen game
+         For to be able to join a game, the Client need to be create.
+         Response:   CAN_JOIN_GAME: server send data about the UDP server for join the game
+                     CLIENT_NOT_CREATED: Client not created
+
+      The GET_GAMES event :
+
+         The Client can get all the vgames he can join,
+         The server will send one message with all the games informations (id, nbr of client in this game)
+         Response:   LIST_GAMES: server send data about the all the games
+
+      The CREATE_CLIENT event :
+
+         The Client can create it account,
+         see Network/NetworkUtils/TCPData/DataStructur.hpp to see the data you need.
+         Response:   PLAYER_CREATED: server send ok
+                     NO_PARAMETERS: missing parameters
+                     BAD_NAME: name already taken

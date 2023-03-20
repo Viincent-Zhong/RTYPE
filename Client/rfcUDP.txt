@@ -1,0 +1,246 @@
+Epitech Paris                           Pierre-Alexandre Delgado-Arevalo
+October 2022                                               Vincent Zhong
+Category: Standards Track                                    Sandro Sgro
+                                                         Titouan Lefevre
+
+                          R-Type UDP Protocol
+
+Table of Contents
+
+    1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+    2.  Header . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+        2a. Format Header  . . . . . . . . . . . . . . . . . . . . . . 1
+        2b. General data transmission  . . . . . . . . . . . . . . . . 1
+
+    3.  Lobby  . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+        3a. Lobby data transmission  . . . . . . . . . . . . . . . . . 2
+        3a. Lobby player Events  . . . . . . . . . . . . . . . . . . . 2
+
+    4.  Game started . . . . . . . . . . . . . . . . . . . . . . . . . 3
+        4a. Game data transmission . . . . . . . . . . . . . . . . . . 3
+        4b. Game server Events . . . . . . . . . . . . . . . . . . . . 3
+        4c. Game client Events . . . . . . . . . . . . . . . . . . . . 4
+
+    5. Error Handling  . . . . . . . . . . . . . . . . . . . . . . . . 5
+
+
+1. Introduction
+
+    This UDP Protocol is one of the 2 Protocols done for the R-Type
+    project (third year Epitech's project). It specify the events of
+    the client-server communications inside a lobby and in a in-game
+    lobby.
+
+    Once the lobby is created in a thread, the client-server
+    communications are done by using this R-Type UDP Protocol. Firstly
+    in the lobby, secondly when the game is started.
+
+    All the client-server communications in lobby and when then game is
+    starting are done by using this UDP Protocol.
+
+2. Header
+
+    2a. Format Header
+
+        Header is compose of :
+            SOURCE_PORT : (transmitter)
+            DESTINATION_PORT : (receiver)
+            BODY_SIZE : (number)
+            BODY : (data)
+
+    2b. General data transmission
+
+        The BODY in the header is composed of binary data that contains
+        various structures for both UDP and TCP Protocol.
+
+        In UDP Protocol, the structures sent are generally data about
+        a position of a sprite and where does the client need to print
+        it in the game window. They are sent regularly to give the
+        impression of fluidity.
+
+        Example : 0x0 (continuer l'exemple ensuite)
+        (.....)
+
+
+Sgro                        Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+3. Lobby
+
+    When a client enter a lobby, he receives informations about the
+    others clients and the parameters of the game. The lobby can host
+    4 clients at maximum on the same lobby.
+
+    3a. Lobby data transmission
+
+        The server send informations about others clients with the
+        following instructions :
+
+            1st argument (number) : position in lobby (1st to 4th)
+
+            2nd argument (number) : size of player's name
+
+            3rd argument (string) : name of player
+
+            4th argument (enum) : color of ship of this player
+
+        Moreover, the server send the parameters of the lobby on
+        entering the lobby and everytime they change.
+
+    3b. Lobby player Events
+
+        The player can execute few events in the lobby, principally
+        optional informations that may help clients to recognize each
+        others. These events are describred below :
+
+            CHANGE_NAME,
+            CHANGE_COLOR,
+            READY
+
+        The CHANGE_NAME event :
+
+            The player can change his name in the lobby that refresh the
+            informations for other players.
+
+        The CHANGE_COLOR event :
+
+            The player can change his ship's color in the lobby that
+            refresh the informations for other players. players can't
+            have the same color.
+
+        The READY event :
+
+            The player can change a boolean to notify the others players
+            that he is ready for the game or that he isn't anymore.
+
+
+Sgro                        Standards Track                     [Page 2]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+4. Game started
+
+    When the game start, the server send to the client many (not all)
+    sprites that he has to display for the user.
+
+    4a. Game data transmission
+
+        The server send a list of struct (SPRITE_LIST) containing the
+        sprites (SPRITE) that the clients needs to display.
+
+        The SPRITE message contains :
+
+            1st number : id of an entity
+            
+            2nd and 3rd number = X and Y coordinate respectively
+                            (in pixels) of the sprite's top left
+                            corner in its SPRITESHEET
+
+            4th number = the sprite's width (in pixels)
+
+            5th number = the sprite's height (in pixels)
+
+            6th and 7th number = X and Y coordinate respectively
+                            (in pixels) of the sprite's top left
+                            corner in the GAME_WINDOW
+
+        A number of sprites is not handled by the server (Background)
+
+    4b. Game server Events
+
+        In addition to the Game data transmission of the sprites, the
+        server can do additional events described below :
+
+            PING_CLIENT,
+            SEND_WAVE_BOSS,
+            DISCONNECTED_CLIENT
+
+        The PING_CLIENT event :
+
+            The server send a ping to the client to avoid inactivity,
+            the client must respond and if not, the player is considered
+            to have left the lobby (see QUIT_LOBBY event on 4c).
+        
+        The SEND_WAVE_BOSS event :
+
+            The server send to the client the current wave number or
+            if a boss is approaching with the following informations :
+
+                WAVE : number
+                BOSS : name of the boss
+
+        The DISCONNECTED_CLIENT event :
+
+            The server send to all the client connected which player
+            has left the lobby.
+
+
+Sgro                        Standards Track                     [Page 3]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+    4c. Game client Events
+
+        The client can execute several events to play the game. With
+        every event, the client send a message to the server to notify
+        the server. All the events available for the client are
+        described below :
+
+            MOVE,
+            SHOOT,
+            QUIT,
+            (Optional or for after prototype :
+                LEVEL_UP,
+                REPAIR,
+                ...)
+
+        The MOVE event :
+
+            The client can move it's own player ship (up, down, left
+            right). He can use 2 of the following who aren't opposite:
+
+                UP,
+                DOWN,
+                LEFT,
+                RIGHT
+
+        The SHOOT event :
+
+            The client can shoot to eliminate his enemies with a variety
+            of shoots available below:
+
+                NORMAL_SHOOT,
+                CHARGED_SHOOT,
+                (ULTIMATE_SHOOT ?)
+                (Optional shoots with bonuses)
+
+        The QUIT event :
+
+            The player quit the lobby or the party, send QUIT event
+            with additional informations described below :
+
+                QUIT_LOBBY,
+                QUIT_GAME
+
+        (Others events : ...)
+
+
+Sgro                        Standards Track                     [Page 4]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+5. Error Handling
+
+    In UDP Protcol, the fluidity of the data sent back and forth can
+    leads to package's loss and that's when the error handling interfere
+    to guarantee protection for crashes.
+
+    (.....)
+
+Sgro                        Standards Track                     [Page 5]

@@ -1,0 +1,9 @@
+enemyOne,nameOne,enemyTwo,nameTwo,enemyThree,nameThree,enemyFour,nameFour,enemyFive,nameFive
+1,hazeEnemy,1,hazeEnemy,0,robotEnemy,0,advanceEnemy,0,specialEnemyUpsideDown
+4,hazeEnemy,4,basicEnemy,0,hazeEnemy,0,fastEnemy,0,specialEnemyUpsideDown
+6,hazeEnemy,4,basicEnemy,1,hazeEnemy,0,basicEnemy,0,specialEnemy
+9,hazeEnemy,8,fastEnemy,2,advanceEnemy,0,advanceEnemy,0,specialEnemyUpsideDown
+13,fastEnemy,10,hazeEnemy,2,fastEnemy,3,robotEnemy,0,specialEnemyUpsideDown
+14,basicEnemy,16,basicEnemy,5,robotEnemy,3,advanceEnemy,0,specialEnemy
+16,basicEnemy,21,hazeEnemy,8,basicEnemy,3,advanceEnemy,1,specialEnemy
+28,hazeEnemy,21,fastEnemy,8,advanceEnemy,11,fastEnemy,1,specialEnemy

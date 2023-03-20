@@ -1,0 +1,68 @@
+version: '3.4'
+
+services:
+  # gcc Debug with make
+  gcc-debug-build-make:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    environment:
+      CC: gcc
+      CXX: g++
+      TARGET: all
+      BUILD_TYPE: Debug
+      CMAKE_GENERATOR: Unix Makefiles
+      CMAKE_ARGS: -DENABLE_DEVELOPER_MODE:BOOL=OFF -DENABLE_TESTING:BOOL=OFF
+  # gcc Debug with ninja
+  gcc-debug-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    environment:
+      CC: gcc
+      CXX: g++
+      TARGET: all
+      BUILD_TYPE: Debug
+      CMAKE_GENERATOR: Ninja
+      CMAKE_ARGS: -DENABLE_DEVELOPER_MODE:BOOL=OFF -DENABLE_TESTING:BOOL=OFF
+  # gcc Release
+  gcc-release-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    environment:
+      CC: gcc
+      CXX: g++
+      TARGET: all
+      BUILD_TYPE: Release
+      CMAKE_GENERATOR: Ninja
+      CMAKE_ARGS: -DENABLE_DEVELOPER_MODE:BOOL=OFF -DENABLE_TESTING:BOOL=OFF 
+  # clang Debug
+  clang-debug-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    environment:
+      CC: clang
+      CXX: clang++
+      TARGET: all
+      BUILD_TYPE: Debug
+      CMAKE_GENERATOR: Ninja
+      CMAKE_ARGS: -DENABLE_DEVELOPER_MODE:BOOL=OFF -DENABLE_TESTING:BOOL=OFF
+  # clang Release
+  clang-release-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build
+    environment:
+      CC: clang
+      CXX: clang++
+      TARGET: all
+      BUILD_TYPE: Release
+      CMAKE_GENERATOR: Ninja
+      CMAKE_ARGS: -DENABLE_DEVELOPER_MODE:BOOL=OFF -DENABLE_TESTING:BOOL=OFF

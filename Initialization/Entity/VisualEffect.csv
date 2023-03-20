@@ -1,0 +1,2 @@
+PositionX,PositionY,Texture,IsDrawable,RectangleX,RectangleY,RectangleWidth,RectangleHeigth,FrameSpeedX,FrameSpeedY,FrameMax,effectName
+100,100,Assets/Images/r-typesheet16.gif,0,40,40,40,30,30,0,280,basicExplosion

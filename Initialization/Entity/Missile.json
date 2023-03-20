@@ -1,0 +1,46 @@
+{
+    "normal": {
+        "Offset" : [5, 0],
+        "Texture" : "Assets/Images/r-typesheet1.gif",
+        "Rectangle" : [200, 120, 32, 12],
+        "Framespeed" : [32, 0],
+        "Framemax" : 64,
+        "Damage" : 2,
+        "Hp" : 1,
+        "Direction" : [50, 0],
+        "Layer": 2
+    },
+    "normal-boosted": {
+        "Offset" : [5, 0],
+        "Texture" : "Assets/Images/r-typesheet43.gif",
+        "Rectangle" : [0, 35, 50, 10],
+        "Framespeed" : [100, 0],
+        "Framemax" : 400,
+        "Damage" : 3,
+        "Hp" : 3,
+        "Direction" : [10, 0],
+        "Layer": 2
+    },
+    "strong": {
+        "Offset" : [5, 0],
+        "Texture" : "Assets/Images/r-typesheet1.gif",
+        "Rectangle" : [104, 168, 80, 16],
+        "Framespeed" : [80, 0],
+        "Framemax" : 184,
+        "Damage" : 6,
+        "Hp" : 8,
+        "Direction" : [100, 0],
+        "Layer": 2
+    },
+    "strong-boosted": {
+        "Offset" : [5, 0],
+        "Texture" : "Assets/Images/r-typesheet-boost-missile.png",
+        "Rectangle": [0, 0, 65, 58],
+        "Framespeed" : [65, 0],
+        "Framemax" : 1040,
+        "Damage" : 8,
+        "Hp" : 1,
+        "Direction" : [150, 0],
+        "Layer": 2
+    }
+}

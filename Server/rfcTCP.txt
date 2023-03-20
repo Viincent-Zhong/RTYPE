@@ -1,0 +1,130 @@
+RFC for TCP in R-TYPE
+
+(Menu and game data)
+
+Epitech Paris                           Pierre-Alexandre Delgado-Arevalo
+October 2022                                               Vincent Zhong
+Category: Standards Track                                    Sandro Sgro
+                                                         Titouan Lefevre
+
+                          R-Type TCP Protocol
+
+Table of Contents
+
+   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   2.  Format Header  . . . . . . . . . . . . . . . . . . . . . . . . 1
+   3.  Format Body  . . . . . . . . . . . . . . . . . . . . . . . . . 1
+   4.  menu   . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+      4a. Menu data transmission  . . . . . . . . . . . . . . . . . . 2
+      4b. Menu player Events  . . . . . . . . . . . . . . . . . . . . 2
+
+
+
+1. Introduction
+
+   This TCP Protocol is one of the 2 Protocols done for the R-Type
+   project (third year Epitech's project). It specify the events of
+   the client-server communications inside the game menu and in the lobby.
+
+   When the player connect to the game, he is connected to the TCP server for
+   create his account,
+   create a game,
+   get all available games,
+   join a game,
+   got to lobby and
+   start game
+
+   All the client-server communications in the menu are done by using
+   this TCP Protocol and when starting a game, the client is redirect to
+   the UDP server.
+
+2. Format Header
+
+   Header is compose of :
+      CODE: unsigned int
+      MESSAGE_SIZE: unsigned int
+
+3. Format Body
+
+   Body is compose of :
+      STATUS_CODE : (enum)
+      Data : (class)
+
+4. Menu
+
+   When a client enter the menu, he receives no data from the server.
+   The server can host an undifined number of client.
+
+
+Delgado                      Standards Track                     [Page 1]
+
+RFC 9999                    R-Type Protocols                October 2022
+
+
+   4a. Menu data transmission
+
+      The server send no informations when connecting to it.
+      In case of error, the server send no messages to the client.
+
+   4b. Menu Client Events
+
+      The Client can execute few events in the Menu :
+
+         REGISTER,
+         ROOMLIST,
+         CREATING_ROOM,
+         JOININ_GROOM,
+         ROOM_PLAYERS,
+         LAUNCHING_GAME,
+         LEAVING_ROOM,
+         DECONNECTING
+
+      The REGISTER event :
+
+         The client send it name to the server and get it ID.
+         The client server send the class RoomContent fro sharing data
+
+      The ROOMLIST event :
+
+         When the client is registern he can get all available rooms in the server, with their id and number of players int it.
+         The client juste need ot send it id.
+         The server send one message per available rooms.
+         each messages contain the structure IDContentNumber
+
+      The CREATING_ROOM event :
+
+         When the client is register, he can create a room, after creating a game.
+         The client send it id with the message and the server send the id of the created room.
+         The structure shared is ID.
+
+      The JOININ_GROOM event :
+
+         The client can join any available rooms.
+         He just need to send the room id to the server.
+         The server send the room id to the client.
+
+      The ROOM_PLAYERS event :
+
+         In a room, a client can ask data about all players inside the same room.
+         The client send the id of the room to the server and as ROOMLIST, the server send one message for each players present.
+         The structure is RoomContent
+
+      The LAUNCHING_GAME event :
+
+         In the room, the client can ask to launch the game.
+         He send the structure ID with the room id.
+         If the client who send the message is the host (the first connected),
+         the server send a message to all client in the room with the host and port of the UDP server and start it.
+         In the other case, the server do nothing.
+         The server send the structure IDContentNumber
+
+      The LEAVING_ROOM event :
+
+         In a room, a client can ask to leave it.
+         The client send the structure ID with the room id.
+         Server doesn't respond.
+
+      The DECONNECTING event :
+
+         if the client crash or deconnect, the server remove the client from everywhere
+         no data are transmitting

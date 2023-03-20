@@ -1,0 +1,8 @@
+{
+    "basicExplosion": {
+        "Texture": "Assets/Images/r-typesheet16.gif",
+        "Rectangle": [40, 40, 40, 30],
+        "Framespeed": [30, 0],
+        "Framemax": 280
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "ball": {
+        "Offset": [-2, -20],
+        "Texture": "Assets/Images/r-typesheet3.gif",
+        "Rectangle": [0, 0, 17, 18],
+        "Framespeed" : [17, 0],
+        "Framemax" : 204,
+        "NormalShoot": "normal",
+        "StrongShoot": "strong",
+        "Layer": 2
+    }
+}
